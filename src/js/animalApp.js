@@ -4,10 +4,12 @@
 (function IIFE(){
   const remoteUrl = 'localhost:3000';
   let animalType = 'cat';
+  const $animalTypeSelect = document.querySelectorAll('input[type=radio]');
   const $animalSelect = document.getElementById('animal-select');
   const $animalDescription = document.getElementById('animal-description');
   const $animalToAdd = document.getElementById('animal-to-add');
   const $animalAdd = document.getElementById('animal-add');
+
 
   function clearElement(element) {
     while(element.firstChild) {
@@ -63,6 +65,16 @@
     });
   }
 
+  function listenToRadio() {
+    for (let i = 0; i < $animalTypeSelect.length; i++) {
+      const element = $animalTypeSelect[i];
+      element.addEventListener('click', (e) => {
+        animalType = e.target.value;
+        populateSelect(e.target.value); 
+      });
+    }
+  }
+
   function listenToAdd() {
     $animalAdd.addEventListener('click', () => {
       $animalAdd.setAttribute('data-loaded', 'false');
@@ -87,6 +99,7 @@
     populateSelect(animalType);
     listenToSelect();
     listenToAdd();
+    listenToRadio();
   }
 
   window.pageLoaded = pageLoaded;
