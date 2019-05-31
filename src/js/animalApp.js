@@ -5,6 +5,7 @@
   const remoteUrl = 'localhost:3000';
   let animalType = 'cat';
   const $animalSelect = document.getElementById('animal-select');
+  const $animalType = document.getElementById('animal-type');
   const $animalDescription = document.getElementById('animal-description');
   const $animalToAdd = document.getElementById('animal-to-add');
   const $animalAdd = document.getElementById('animal-add');
@@ -30,7 +31,7 @@
       .then((response) => response.json())
       .then((data) => {
         const animals = data.data;
-        const $defaultOption = createOption(null, `Select ${animalType}`);
+        const $defaultOption = createOption(null, `Select ${type}`);
         $animalSelect.appendChild($defaultOption);
         animals.forEach((animal) => {
           const $option = createOption(animal.id, animal.name);
@@ -63,6 +64,16 @@
     });
   }
 
+  function listenToSelectType() {
+    $animalType.addEventListener('change', (e) => {
+      const type = e.target.selectedOptions[0].value;
+      console.log(e.target);
+      console.log(type);
+      animalType = type;
+      populateSelect(type);
+    });
+  }
+
   function listenToAdd() {
     $animalAdd.addEventListener('click', () => {
       $animalAdd.setAttribute('data-loaded', 'false');
@@ -85,6 +96,7 @@
 
   function pageLoaded() {
     populateSelect(animalType);
+    listenToSelectType();
     listenToSelect();
     listenToAdd();
   }

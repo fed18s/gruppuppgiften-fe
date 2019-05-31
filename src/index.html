@@ -4,7 +4,13 @@
 <body>
 
 <div id="animal-listing">
-    <label for="animal-select">Select a cat</label>
+    <label for="animal-type">Select animal type</label>
+    <select id="animal-type" data-loaded="false">
+        <option value="cat">Cats</option>
+        <option value="dog">Dogs</option>
+        <option value="pokemon">Pokemons</option>
+    </select>
+    <label for="animal-select">Select animal</label>
     <select id="animal-select" data-loaded="false">
     </select>
     <div id="animal-description" data-loaded="false">Please make your selection</div>
