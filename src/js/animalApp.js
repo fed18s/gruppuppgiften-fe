@@ -3,7 +3,17 @@
 
 (function IIFE(){
   const remoteUrl = 'localhost:3000';
-  let animalType = 'cat';
+
+  let animalType = "cat";
+
+
+  function checkAnimalType(animal){
+    animalType = animal;
+    populateSelect(animalType); 
+  }
+
+  window.checkAnimalType = checkAnimalType;
+
   const $animalSelect = document.getElementById('animal-select');
   const $animalDescription = document.getElementById('animal-description');
   const $animalToAdd = document.getElementById('animal-to-add');
