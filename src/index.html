@@ -1,19 +1,30 @@
 <!doctype html>
 <html lang="en">
-<head><title>Little cat fanpage</title></head>
+
+<head>
+    <title>Little cat fanpage</title>
+</head>
+
 <body>
-<div id="animal-listing">
-    <label for="animal-select">Select a cat</label>
-    <select id="animal-select" data-loaded="false">
-    </select>
-    <div id="animal-description" data-loaded="false">Please make your selection</div>
-</div>
-<div id="animal-addition">
-    <label for="animal-to-add">Enter animal data to add (JSON format)</label>
-    <textarea id="animal-to-add"></textarea>
-    <button id="animal-add">Add animal</button>
-</div>
-<script src="./js/animalApp.js"></script>
-<script>pageLoaded();</script>
+    <form action="">
+        <input checked="checked" type="radio" name="animal" value="cat"> Cats<br>
+        <input type="radio" name="animal" value="pokemon"> Pokémons<br>
+        <input type="radio" name="animal" value="dog"> Dogs
+    </form>
+
+    <div id="animal-listing">
+        <label for="animal-select">Select animal</label>
+        <select id="animal-select" data-loaded="false">
+        </select>
+        <div id="animal-description" data-loaded="false">Please make your selection</div>
+    </div>
+    <div id="animal-addition">
+        <label for="animal-to-add">Enter animal data to add (JSON format)</label>
+        <textarea id="animal-to-add"></textarea>
+        <button id="animal-add">Add animal</button>
+    </div>
+    <script src="./js/animalApp.js"></script>
+    <script>pageLoaded();</script>
 </body>
+
 </html>
