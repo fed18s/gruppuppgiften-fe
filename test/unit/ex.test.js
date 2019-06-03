@@ -10,8 +10,8 @@ const pretendElement = {
  _removeChild: jest.fn()
 };
 
-describe('unit test clear element', ()=>{
-  test('clear element', ()=> {
+describe('ClearElement-function should have been called on one time', ()=>{
+  test('should clear element', ()=> {
     clearElement(pretendElement);
     expect(pretendElement._removeChild).toHaveBeenCalledTimes(1);
   });
