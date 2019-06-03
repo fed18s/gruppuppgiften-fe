@@ -72,6 +72,27 @@ describe('html tests', () => {
       });
   });
 
+  test('Select Pokémon radio-button', (done) => {
+    // Find element with id 'pokemon', load element and then run click-function
+    driver.wait(until.elementLocated(By.id('pokemon')), timeout)
+      .then((select) => {
+        driver.wait(until.elementIsVisible(select));
+        select.click();
+        return select;
+      })
+
+      // Wait for the animal-information to update
+      .then(() => driver.wait(until.elementLocated(By.id('animal-select')), timeout))
+      .then(waitUntilLoaded)
+      // Get animal-information and check that text is equal to 'Select pokemon'
+      .then((select) => select.findElements(By.tagName('option')))
+      .then((options) => options[0].getText())
+      .then((text) => {
+        expect(text).toBe('Select pokemon');
+        done();
+      });
+  });
+
   test('upload animal', (done) => {
     // Find the animal input field and fill it with animal data
     driver.wait(until.elementLocated(By.id('animal-to-add')), timeout)

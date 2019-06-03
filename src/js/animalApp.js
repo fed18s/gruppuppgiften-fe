@@ -10,7 +10,6 @@
   const $animalToAdd = document.getElementById('animal-to-add');
   const $animalAdd = document.getElementById('animal-add');
 
-
   function clearElement(element) {
     while(element.firstChild) {
       element.removeChild(element.firstChild);
@@ -65,7 +64,7 @@
     });
   }
 
-  function listenToRadio() {
+  function listenToRadioButton() {
     for (let i = 0; i < $animalTypeSelect.length; i++) {
       const element = $animalTypeSelect[i];
       element.addEventListener('click', (e) => {
@@ -99,7 +98,7 @@
     populateSelect(animalType);
     listenToSelect();
     listenToAdd();
-    listenToRadio();
+    listenToRadioButton();
   }
 
   window.pageLoaded = pageLoaded;
