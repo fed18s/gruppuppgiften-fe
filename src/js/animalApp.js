@@ -8,6 +8,7 @@
   const $animalDescription = document.getElementById('animal-description');
   const $animalToAdd = document.getElementById('animal-to-add');
   const $animalAdd = document.getElementById('animal-add');
+  const $animalSelectType = document.getElementById('animal-type');
 
   function clearElement(element) {
     while(element.firstChild) {
@@ -63,6 +64,14 @@
     });
   }
 
+  function listenToSelectType() {
+    $animalSelectType.addEventListener('change', (e) => {
+      const type = e.target.selectedOptions[0].value;
+      populateSelect(type);
+      animalType = type;
+    })
+  }
+
   function listenToAdd() {
     $animalAdd.addEventListener('click', () => {
       $animalAdd.setAttribute('data-loaded', 'false');
@@ -87,6 +96,7 @@
     populateSelect(animalType);
     listenToSelect();
     listenToAdd();
+    listenToSelectType();
   }
 
   window.pageLoaded = pageLoaded;
@@ -94,6 +104,9 @@
   module.exports = {
       testString: function testString(str) {
       return false;
-    }
+    }, 
+    listenToSelectType,
+    clearElement,
+    
   };
 })();
