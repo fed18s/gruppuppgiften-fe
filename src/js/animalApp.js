@@ -104,6 +104,9 @@
   module.exports = {
       testString: function testString(str) {
       return false;
-    }
+    }, 
+    listenToSelectType,
+    clearElement,
+    
   };
 })();
