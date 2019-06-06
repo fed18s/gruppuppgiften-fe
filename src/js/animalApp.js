@@ -79,7 +79,8 @@
         .then(() => {
           $animalAdd.setAttribute('data-loaded', 'true');
           populateSelect(animalType);
-        });
+        })
+          .catch((error) => console.error('fail', error));
     })
   }
 
@@ -94,6 +95,12 @@
   module.exports = {
       testString: function testString(str) {
         return false;
-      }
+      },
+      clearElement,
+      createOption,
+      populateSelect,
+      getByTypeAndId,
+      listenToSelect,
+      listenToAdd,
   };
 })();
