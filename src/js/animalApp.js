@@ -1,4 +1,4 @@
-// globals document, window
+// globals document, window, modules
 "use strict";
 
 (function IIFE(){
@@ -93,7 +93,7 @@
 
   module.exports = {
       testString: function testString(str) {
-      return false;
-    }
+        return false;
+      }
   };
 })();
