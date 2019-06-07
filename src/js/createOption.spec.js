@@ -18,5 +18,5 @@ describe('tests for createOption', function() {
 
     // Verify
     expect(testOptionNode.outerHTML).toBe(optionString);
-  })
+  });
 });
