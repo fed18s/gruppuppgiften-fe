@@ -26,8 +26,8 @@ const mockedFetchPromise = Promise.resolve({
 });
 
 
-describe('integration tests for listenToRadio', () => {
-  let fetchBackup, listenToRadio;
+describe('integration tests for checkAnimal type', () => {
+  let fetchBackup, checkAnimalType;
   beforeAll(() => {
     document.body.innerHTML = `
     <input onclick='checkAnimalType("cat")' type="radio" name="animal" value="cat" id="cat"><p>Cat</p>t<br>
@@ -40,9 +40,11 @@ describe('integration tests for listenToRadio', () => {
         <div id="animal-description" data-loaded="false"></div>
     </div>`;
 
+    //window.fetch is global variable containing referance to the fetch function
     fetchBackup = window.fetch;
+    // we replace real fetch function with a jest.fn() that allows us to replace fetch with mock data
     window.fetch = jest.fn().mockReturnValue(mockedFetchPromise);
-    listenToRadio = require('../../src/js/animalApp').listenToRadio;
+    checkAnimalType = require('../../src/js/animalApp').checkAnimalType;
   });
 
   afterAll(() => {
@@ -51,31 +53,15 @@ describe('integration tests for listenToRadio', () => {
     }
   });
 
-  it('should replace old list with new and call fetch once', (done) => {
-    // Setup
-    const expectedOutcome1 = `<select id="animal-select" data-loaded="false"></select>`;
-    const $animalSelect = document.getElementById('animal-select');
-    const $animalTypeSelect = document.querySelectorAll('input[type=radio]');
-    const type = $animalTypeSelect[0].value;
-    const expectedUrl = `http://localhost:3000/${type}s`;
-    const expectedOutcome2 = `<select id="animal-select" data-loaded="true"><option value="null">Select ${type}</option><option value="0">Baulbasar</option><option value="1">Pikachu</option></select>`;
+  it('should be defined', () => {
+    expect(checkAnimalType).toBeDefined();
 
-    // Test-run
-    listenToRadio();
-    let clickEvent = document.createEvent('HTMLEvents');
-    clickEvent.initEvent('click', false, true);
-    $animalTypeSelect[0].dispatchEvent(clickEvent);
+  });
 
-    // Verify
-    expect($animalSelect.outerHTML).toBe(expectedOutcome1);
+  it('should call fetch once and fetch data', () => {
+    checkAnimalType('test');
+    const expectedURLoutcome = `http://localhost:3000/tests`;
     expect(window.fetch).toHaveBeenCalledTimes(1);
-    expect(window.fetch.mock.calls[0][0]).toBe(expectedUrl);
-
-    // Resolve the promises and keep verifying
-    process.nextTick(() => {
-      expect($animalSelect.getAttribute('data-loaded')).toBe('true');
-      expect($animalSelect.outerHTML).toBe(expectedOutcome2);
-      done();
-    });
+    expect(window.fetch.mock.calls[0][0]).toBe(expectedURLoutcome);
   });
 });

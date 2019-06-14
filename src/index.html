@@ -4,9 +4,12 @@
 <body>
     
     <p>Please select an animal type:</p>
-        <input onclick='checkAnimalType("cat")' type="radio" name="animal" value="cat" id="cat"><p>Cat</p><br>
-        <input onclick='checkAnimalType("pokemon")' type="radio" name="animal" value="pokemon" id="pokemon"><p>Pokemon</p><br>
-        <input onclick='checkAnimalType("dog")' type="radio" name="animal" value="dog" id="dog"><p>>Dog</p<br>  
+        <input onclick='checkAnimalType("cat")' type="radio" name="animal" value="cat" id="cat"><p>Cat</p>
+        <br>
+        <input onclick='checkAnimalType("pokemon")' type="radio" name="animal" value="pokemon" id="pokemon"><p>Pokemon</p>
+        <br>
+        <input onclick='checkAnimalType("dog")' type="radio" name="animal" value="dog" id="dog">
+        <p>Dog</p<br>  
 
     <div id="animal-listing">
         <label for="animal-select">Select</label>
@@ -18,6 +21,15 @@
         <textarea id="animal-to-add"></textarea>
         <button id="animal-add">Add animal</button>
     </div>
+
+    <form action="">
+        <div>
+            <label for="form1-input1">Name:</label>
+            <input id="form1-input1" minlength="3" type="text" required/>
+            <span class="error">At least three characters needed!</span>
+        </div>
+    </form>
+
 <script src="./js/animalApp.js"></script>
 <script>pageLoaded();</script>
 </body>
