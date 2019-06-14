@@ -2,25 +2,34 @@
 <html lang="en">
 <head><title>Creature Fan page</title></head>
 <body>
+    
+    <p>Please select an animal type:</p>
+        <input onclick='checkAnimalType("cat")' type="radio" name="animal" value="cat" id="cat"><p>Cat</p>
+        <br>
+        <input onclick='checkAnimalType("pokemon")' type="radio" name="animal" value="pokemon" id="pokemon"><p>Pokemon</p>
+        <br>
+        <input onclick='checkAnimalType("dog")' type="radio" name="animal" value="dog" id="dog">
+        <p>Dog</p<br>  
 
+    <div id="animal-listing">
+        <label for="animal-select">Select</label>
+        <select id="animal-select" data-loaded="false"></select>
+        <div id="animal-description" data-loaded="false"></div>
+    </div>
+    <div id="animal-addition">
+        <label for="animal-to-add">Enter animal data to add (JSON format)</label>
+        <textarea id="animal-to-add"></textarea>
+        <button id="animal-add">Add animal</button>
+    </div>
 
-    <p>Please select your gender:</p>
-        <input onclick='checkAnimalType("cat")' type="radio" name="animal" value="cat" id="cat">Cat<br>
-        <input onclick='checkAnimalType("pokemon")' type="radio" name="animal" value="pokemon" id="pokemon">Pokemon<br>
-        <input onclick='checkAnimalType("dog")' type="radio" name="animal" value="dog" id="dog">Dog<br>  
-   
+    <form action="">
+        <div>
+            <label for="form1-input1">Name:</label>
+            <input id="form1-input1" minlength="3" type="text" required/>
+            <span class="error">At least three characters needed!</span>
+        </div>
+    </form>
 
-<div id="animal-listing">
-    <label for="animal-select">Select a cat</label>
-    <select id="animal-select" data-loaded="false">
-    </select>
-    <div id="animal-description" data-loaded="false">Please make your selection</div>
-</div>
-<div id="animal-addition">
-    <label for="animal-to-add">Enter animal data to add (JSON format)</label>
-    <textarea id="animal-to-add"></textarea>
-    <button id="animal-add">Add animal</button>
-</div>
 <script src="./js/animalApp.js"></script>
 <script>pageLoaded();</script>
 </body>
