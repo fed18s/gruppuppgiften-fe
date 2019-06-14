@@ -1,0 +1,14 @@
+span.error {
+    display: none;
+    font-size: 0.85rem;
+}
+
+input:invalid,
+input.error {
+    color: #ff0000;
+}
+
+input:invalid ~ span.error {
+    color: #ff0000;
+    display: inline;
+}
