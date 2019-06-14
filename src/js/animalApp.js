@@ -3,9 +3,7 @@
 
 (function IIFE(){
   const remoteUrl = 'localhost:3000';
-
-  let animalType = "cat";
-
+  let animalType;
 
   function checkAnimalType(animal){
     animalType = animal;
