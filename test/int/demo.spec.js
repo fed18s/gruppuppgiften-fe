@@ -14,8 +14,8 @@
 
 const mockedResponse = {
   data:[
-    { id: 0, name: 'name1', },
-    { id: 1, name: 'name2', },
+    { id: 0, name: 'Baulbasar', },
+    { id: 1, name: 'Pikachu', }
   ]
 };
 
@@ -30,12 +30,16 @@ describe('integration tests for listenToRadio', () => {
   let fetchBackup, listenToRadio;
   beforeAll(() => {
     document.body.innerHTML = `
-    <form action="">
-      <input type="radio" name="animal" value="cat"> Cats<br>
-      <input type="radio" name="animal" value="pokemon"> Pokémons<br>
-      <input type="radio" name="animal" id="dog" value="dog"> Dogs
-    </form>
-    <select id="animal-select"><option value="-1">TEST</option></select>`;
+    <input onclick='checkAnimalType("cat")' type="radio" name="animal" value="cat" id="cat"><p>Cat</p>t<br>
+    <input onclick='checkAnimalType("pokemon")' type="radio" name="animal" value="pokemon" id="pokemon"><p>Pokemon</p><br>
+    <input onclick='checkAnimalType("dog")' type="radio" name="animal" value="dog" id="dog"><p>Dog</p><br>
+
+    <div id="animal-listing">
+        <label for="animal-select">Select</label>
+        <select id="animal-select" data-loaded="false"></select>
+        <div id="animal-description" data-loaded="false"></div>
+    </div>`;
+
     fetchBackup = window.fetch;
     window.fetch = jest.fn().mockReturnValue(mockedFetchPromise);
     listenToRadio = require('../../src/js/animalApp').listenToRadio;
@@ -54,7 +58,7 @@ describe('integration tests for listenToRadio', () => {
     const $animalTypeSelect = document.querySelectorAll('input[type=radio]');
     const type = $animalTypeSelect[0].value;
     const expectedUrl = `http://localhost:3000/${type}s`;
-    const expectedOutcome2 = `<select id="animal-select" data-loaded="true"><option value="null">Select ${type}</option><option value="0">name1</option><option value="1">name2</option></select>`;
+    const expectedOutcome2 = `<select id="animal-select" data-loaded="true"><option value="null">Select ${type}</option><option value="0">Baulbasar</option><option value="1">Pikachu</option></select>`;
 
     // Test-run
     listenToRadio();
