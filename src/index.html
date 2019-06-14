@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
-<head><title>Little cat fanpage</title></head>
+<head>
+    <title>Little cat fanpage</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
 <body>
 
 <div id="animal-listing">
@@ -20,7 +23,46 @@
     <textarea id="animal-to-add"></textarea>
     <button id="animal-add">Add animal</button>
 </div>
+
+<form id="form1">
+    <div>
+        <label for="form1-input1">Name:</label>
+        <input id="form1-input1" type="text" required minlength="2" maxlength="35">
+        <span class="error">You must write at least two characters</span>
+    </div>
+    <div>
+        <label for="form1-input2">Email address:</label>
+        <input id="form1-input2" type="email">
+        <span class="error">The email address is invalid</span>
+    </div>
+    <div>
+        <label for="form1-input3">Website:</label>
+        <input id="form1-input3" type="url" placeholder="http://..." minlength="13">
+        <span class="error">The website url is invalid (remember "http://")</span>
+    </div>
+    <button type="submit" id="form1-submit">Submit</button>
+</form>
+<!-- second form below-->
+<form id="form2">
+    <div>
+        <label for="form2-input1">Name:</label>
+        <input id="form2-input1" type="text" required minlength="2" maxlength="35">
+        <span class="error">You must write at least two characters</span>
+    </div>
+    <div>
+        <label for="form2-input2">Email address:</label>
+        <input id="form2-input2" type="email">
+        <span class="error">The email address is invalid</span>
+    </div>
+    <div>
+        <label for="form2-input3">Website:</label>
+        <input id="form2-input3" type="url" placeholder="http://..." minlength="13">
+        <span class="error">The website url is invalid (missing "http://")</span>
+    </div>
+    <button type="submit" id="form2-submit">Submit</button>
+</form>
 <script src="./js/animalApp.js"></script>
+<script src="./js/appValidate.js"></script>
 <script>pageLoaded();</script>
 </body>
 </html>
