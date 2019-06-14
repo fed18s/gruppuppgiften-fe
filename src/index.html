@@ -2,25 +2,22 @@
 <html lang="en">
 <head><title>Creature Fan page</title></head>
 <body>
-
-
-    <p>Please select your gender:</p>
+    
+    <p>Please select an animal type:</p>
         <input onclick='checkAnimalType("cat")' type="radio" name="animal" value="cat" id="cat">Cat<br>
         <input onclick='checkAnimalType("pokemon")' type="radio" name="animal" value="pokemon" id="pokemon">Pokemon<br>
         <input onclick='checkAnimalType("dog")' type="radio" name="animal" value="dog" id="dog">Dog<br>  
-   
 
-<div id="animal-listing">
-    <label for="animal-select">Select a cat</label>
-    <select id="animal-select" data-loaded="false">
-    </select>
-    <div id="animal-description" data-loaded="false">Please make your selection</div>
-</div>
-<div id="animal-addition">
-    <label for="animal-to-add">Enter animal data to add (JSON format)</label>
-    <textarea id="animal-to-add"></textarea>
-    <button id="animal-add">Add animal</button>
-</div>
+    <div id="animal-listing">
+        <label for="animal-select">Select a cat</label>
+        <select id="animal-select" data-loaded="false"></select>
+        <div id="animal-description" data-loaded="false">Please make your selection</div>
+    </div>
+    <div id="animal-addition">
+        <label for="animal-to-add">Enter animal data to add (JSON format)</label>
+        <textarea id="animal-to-add"></textarea>
+        <button id="animal-add">Add animal</button>
+    </div>
 <script src="./js/animalApp.js"></script>
 <script>pageLoaded();</script>
 </body>
