@@ -2,28 +2,80 @@
 <html lang="en">
 
 <head>
-    <title>Little cat fanpage</title>
+    <title>Little animal fanpage</title>
+
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+        #errorMessageName, #errorMessageEmail, #errorMessageAnimalData{
+            color: rgb(179, 2, 2);
+        }
+
+    </style>
+
 </head>
 
 <body>
-    <form action="">
+    <h1>Add animal:</h1>
+
+    <form id="theForm">
+
+        <div>
+            <label id="nameInput" for="form1-input1"><strong>Enter your name:</strong></label><br>
+            <input id="form1-input1" minlength="3" type="text" required/>
+            <span id="errorMessageName"></span>
+        </div>
+
+        <br>
+
+        <div>
+            <label id="emailInput" for="form1-input2"><strong>Enter your email:</strong></label><br>
+            <input id="form2-input2" type="email" minlength="7" required/>
+            <span id="errorMessageEmail"></span>
+        </div>
+
+        <br>
+
+        <h2 class="selectAnimalTypeHeading">Select animal type:</h2>
+        <div class="radioButtonContainer">
+            <input checked="checked" type="radio" id="cat" name="animal" value="cat">Cats
+            <input type="radio" name="animal" value="pokemon" id="pokemon">Pokémons
+            <input type="radio" name="animal" value="dog">Dogs
+        </div>
+
+        <br>
+
+        <div id="animal-addition">
+            <label for="animal-to-add"><strong>Enter animal data (JSON-format):</strong></label><br>
+            <textarea id="animal-to-add" type="JSON" required></textarea>
+            <span id="errorMessageAnimalData"></span><br>
+            <button id="animal-add" type="submit">Add animal</button>
+        </div>
+    
+    </form>
+
+    <br>
+    <hr>
+
+    <h1>Show existing animals:</h1>
+    <div class="radioButtonContainer">
         <input checked="checked" type="radio" id="cat" name="animal" value="cat">Cats
         <input type="radio" name="animal" value="pokemon" id="pokemon">Pokémons
         <input type="radio" name="animal" value="dog">Dogs
-  
+    </div>
+
+    <br>
 
     <div id="animal-listing">
-        <label for="animal-select">Select animal</label>
+        <label for="animal-select">Select animal to show:</label>
         <select id="animal-select" data-loaded="false">
         </select>
-        <div id="animal-description" data-loaded="false">Please make your selection</div>
+        <div id="animal-description" data-loaded="false"><strong>Please make your selection</strong></div>
     </div>
-    <div id="animal-addition">
-        <label for="animal-to-add">Enter animal data to add (JSON format)</label>
-        <textarea id="animal-to-add"></textarea>
-        <button id="animal-add">Add animal</button>
-    </div>
-</form>
+
+    <script>var module = {};</script>
     <script src="./js/animalApp.js"></script>
     <script>pageLoaded();</script>
 </body>
