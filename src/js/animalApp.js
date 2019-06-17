@@ -105,6 +105,7 @@
 
   module.exports = {
     clearElement,
+    listenToRadioButton,
     testString: function testString(str) {
       return false;
     }

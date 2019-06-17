@@ -1,4 +1,4 @@
-import chromedriver from 'chromedriver';
+
 import { Builder, until, By } from 'selenium-webdriver';
 import server from '../../app';
 
@@ -48,7 +48,6 @@ describe('html tests', () => {
   });
 
   test('populate select', (done) => {
-    // First find the select-tag and open it
     driver.wait(until.elementLocated(By.id('animal-select')), timeout)
       .then((select) => {
         driver.wait(until.elementIsVisible(select));
@@ -68,57 +67,6 @@ describe('html tests', () => {
       .then((description) => description.getText())
       .then((text) => {
         expect(text.length).toBeGreaterThan(0);
-        done();
-      });
-  });
-
-  test('Select Pokémon radio-button', (done) => {
-    // Find element with id 'pokemon', load element and then run click-function
-    driver.wait(until.elementLocated(By.id('pokemon')), timeout)
-      .then((select) => {
-        driver.wait(until.elementIsVisible(select));
-        select.click();
-        return select;
-      })
-
-      // Wait for the animal-information to update
-      .then(() => driver.wait(until.elementLocated(By.id('animal-select')), timeout))
-      .then(waitUntilLoaded)
-      // Get animal-information and check that text is equal to 'Select pokemon'
-      .then((select) => select.findElements(By.tagName('option')))
-      .then((options) => options[0].getText())
-      .then((text) => {
-        expect(text).toBe('Select pokemon');
-        done();
-      });
-  });
-
-  test('upload animal', (done) => {
-    // Find the animal input field and fill it with animal data
-    driver.wait(until.elementLocated(By.id('animal-to-add')), timeout)
-      .then((textarea) => {
-        textarea.sendKeys('\t');
-        textarea.clear();
-        textarea.sendKeys('{"name":"test"}');
-      })
-      // Find the submit button and simulate a click
-      .then(() => driver.wait(until.elementLocated(By.id('animal-add')), timeout))
-      .then((button) => {
-        button.click();
-        return button;
-      })
-      // Wait until the load (post) on the button has finished
-      .then(waitUntilLoaded)
-      // Find the select and wait until it has updated
-      .then(() => driver.wait(until.elementLocated(By.id('animal-select')), timeout))
-      .then(waitUntilLoaded)
-      // List the options and get the last one (hopefully the one we just added)
-      .then((select) => select.findElements(By.tagName('option')))
-      .then((options) => options.pop())
-      // Validate that the text is the one we entered as a name
-      .then((lastOption) => lastOption.getText())
-      .then((text) => {
-        expect(text).toBe('test');
         done();
       });
   });
