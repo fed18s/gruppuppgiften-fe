@@ -1,6 +1,24 @@
 <!doctype html>
 <html lang="en">
-<head><title>Creature Fan page</title></head>
+<head>
+    <title>Creature Fan page</title>
+    <style>
+        input:invalid,
+        input.error {
+            color: red;
+        }
+        span.error {
+            display: none;
+            font-size: 0.5em;
+        }
+        input:invalid ~ span.error,
+        input.error ~ span.error
+        {
+            color: red;
+            display: inline;
+        }
+    </style>
+</head>
 <body>
     
     <p>Please select an animal type:</p>
@@ -22,13 +40,23 @@
         <button id="animal-add">Add animal</button>
     </div>
 
-    <form action="">
+    <form id="form-1">
         <div>
-            <label for="form1-input1">Name:</label>
-            <input id="form1-input1" minlength="3" type="text" required/>
-            <span class="error">At least three characters needed!</span>
+            <label for="form1-input1">Enter Username</label>
+            <input id="form1-input1" minlength="6" type="text" pattern="[a-z]\w{4,}\d+" data-type="username" required/>
+            <span class="error">Username must be at least 6 characters long and contain at least 5 letters and a number</span>
         </div>
+        <button id="form1-submit" type="submit">Submit</button>
     </form>
+
+    <form id="form-2">
+            <div>
+                <label for="form1-input1">Date of birth</label>
+                <input id="form2-input2" type="text"  data-type="birthdate" required />
+                <span class="error">Must be formated as YYMMDD</span>
+            </div>
+            <button id="form1-submit" type="submit">Submit</button>
+        </form>
 
 <script src="./js/animalApp.js"></script>
 <script>pageLoaded();</script>

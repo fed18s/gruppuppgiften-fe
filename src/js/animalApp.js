@@ -91,10 +91,56 @@
     })
   }
 
+  const $form1 = document.getElementById('form-1');
+  const $form2 = document.getElementById('form-2');
+  const tagRegex = /<.*>/;
+
+  function onSubmitForm(e) {
+    for (let i = 0; i<e.target.length; i++) {
+      e.target[i].style.borderColor = '';
+      const inputValue = e.target[i].value;
+      const inputDataType = e.target[i].getAttribute('data-type');
+     
+      switch (inputDataType) {
+        case 'username':
+        case 'birthdate':
+          if (inputValue.match(tagRegex)) {
+            alert("Don't hack, don't hack me no more");
+            e.target[i].className = 'error';
+            formValid = false;
+          }
+          else {
+            e.target[i].className = '';
+          }
+          break;
+        }
+    }
+  }
+
+  function onInvalid(e) {
+    e.preventDefault();
+    e.target.style.borderColor = 'red';
+  }
+
+  function registerInvalidListeners(form) {
+    for (let i=0; i<form.length; i++) {
+      form[i].addEventListener('invalid', onInvalid);
+    }
+  }
+
+  function registerListeners() {
+    $form1.addEventListener('submit', onSubmitForm);
+    registerInvalidListeners($form1);
+    $form2.addEventListener('submit', onSubmitForm);
+    registerInvalidListeners($form2);
+
+  }
+
   function pageLoaded() {
     populateSelect(animalType);
     listenToSelect();
     listenToAdd();
+    registerListeners();
   }
 
   window.pageLoaded = pageLoaded;

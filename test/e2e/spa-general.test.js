@@ -17,26 +17,20 @@ const waitUntilLoaded = (element) => {
       }
       return false;
     });
-};
+  };
 
 describe('html tests', () => {
   beforeAll((done) => {
     listeningServer = server.listen(PORT);
     
-    //starts chromeeditor
-    //.build mans start chrome browser
     driver = new Builder().forBrowser('chrome').build();
-    // surl to the site on defined Url, aht return a promse
     driver.get(baseUrl)
-      //wait untill the site is downloaded
       .then(done);
   });
 
   afterAll((done) => {
     listeningServer.close();
-    //a kill signal taht returns a promise
     driver.quit()
-      //.then takes in a function as a parameter
       .then(done);
   });
 
@@ -54,35 +48,35 @@ describe('html tests', () => {
   });
 
   test('clicking on dog and see if select is populated', (done) => { 
-    //find element with value dog
-    //driver.wait awaits a result within a set period of time before we asume the browser crashed
+    // Find element with value dog
+    // Driver.wait awaits a result within a set period of time before we asume the browser has crashed
     driver.wait(until.elementLocated(By.id('dog')), timeout)
-    //click on the dog element
-        .then((dogElement) => {
-          dogElement.click()
-          driver.wait(until.elementLocated(By.id('animal-select')), timeout)
-          .then((animalSelect) => {
-              driver.wait(animalSelect.getAttribute('data-loaded'), timeout)
-                //wait until element select is populated
-                .then(loaded => {
-                  expect(loaded).toBeTruthy();
-                  //Find first option element in animal-selectlet
-                  animalSelect.findElements(By.tagName('option'))
-                  .then(options => {
-                    return options[0].getText();
-                  })
-                  .then(optionsText => {
-                    expect(optionsText).toBe('Select dog');
-                    done();
-                  })  
-                }) 
+    // Click on the dog element
+      .then((dogElement) => {
+        dogElement.click()
+        driver.wait(until.elementLocated(By.id('animal-select')), timeout)
+        .then((animalSelect) => {
+          driver.wait(animalSelect.getAttribute('data-loaded'), timeout)
+            // Wait until element select is populated
+            .then(loaded => {
+              expect(loaded).toBeTruthy();
+              // Find first option element in animal-select
+              animalSelect.findElements(By.tagName('option'))
+              .then(options => {
+                return options[0].getText();
               })
+              .then(optionsText => {
+                expect(optionsText).toBe('Select dog');
+                done();
+              })  
+            }) 
           })
+        })
       })
 
 
   test('populate select', (done) => {
-    // First find the select-tag and open it
+    // Find the select-tag and open it
     driver.wait(until.elementLocated(By.id('animal-select')), timeout)
       .then((select) => {
         driver.wait(until.elementIsVisible(select));
