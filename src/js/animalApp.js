@@ -96,15 +96,11 @@
   const tagRegex = /<.*>/;
 
   function onSubmitForm(e) {
-    let formValid = true;
-    console.log('hello inside onsubmit, outside loop');
     for (let i = 0; i<e.target.length; i++) {
       e.target[i].style.borderColor = '';
       const inputValue = e.target[i].value;
       const inputDataType = e.target[i].getAttribute('data-type');
-      console.log(inputValue.match(tagRegex));
-      console.log('hello inside loop');
-
+     
       switch (inputDataType) {
         case 'username':
         case 'birthdate':
@@ -123,7 +119,6 @@
 
   function onInvalid(e) {
     e.preventDefault();
-    //console.log(e.target.getAttribute('id'));
     e.target.style.borderColor = 'red';
   }
 
