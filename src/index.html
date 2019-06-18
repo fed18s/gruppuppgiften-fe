@@ -9,51 +9,51 @@
             background-color: lightgray;
         }
 
-        #errorMessageName, #errorMessageEmail, #errorMessageAnimalData{
+        #errorMessageName, #errorMessageEmail, #errorMessageAnimalData, #errorPersonalNumber{
             color: rgb(179, 2, 2);
         }
-
     </style>
 
 </head>
 
 <body>
+
     <h1>Add animal:</h1>
 
     <form id="theForm">
 
         <div>
-            <label id="nameInput" for="form1-input1"><strong>Enter your name:</strong></label><br>
-            <input id="form1-input1" minlength="3" type="text" required/>
+            <label id="nameInput" for="name"><strong>Enter your firstname and lastname:</strong></label><br>
+            <input id="name" minlength="3" type="text" data-type="name" placeholder="Firstname Lastname"/>
             <span id="errorMessageName"></span>
         </div>
-
         <br>
-
         <div>
-            <label id="emailInput" for="form1-input2"><strong>Enter your email:</strong></label><br>
-            <input id="form2-input2" type="email" minlength="7" required/>
+            <label id="emailInput" for="email"><strong>Enter your email:</strong></label><br>
+            <input id="email" type="email" data-type="email" minlength="7" placeholder="name@email.com"/>
             <span id="errorMessageEmail"></span>
         </div>
-
         <br>
-
+        <div>
+            <label id="pNumberInput" for="personalNumber"><strong>Enter yout personal number:</strong></label><br>
+            <input id="personalNumber" type="text" data-type="number" placeholder="YYMMDD-XXXX"/>
+            <span id="errorPersonalNumber"></span>
+        </div>
+        <br>
         <h2 class="selectAnimalTypeHeading">Select animal type:</h2>
         <div class="radioButtonContainer">
             <input checked="checked" type="radio" id="cat" name="animal" value="cat">Cats
             <input type="radio" name="animal" value="pokemon" id="pokemon">Pokémons
             <input type="radio" name="animal" value="dog">Dogs
         </div>
-
         <br>
-
         <div id="animal-addition">
-            <label for="animal-to-add"><strong>Enter animal data (JSON-format):</strong></label><br>
-            <textarea id="animal-to-add" type="JSON" required></textarea>
+            <label for="animal-to-add"><strong>Enter animal data (JSON-format) Example: { "name": "Ronja", "color": "Green", "age": 22 }</strong></label><br>
+            <textarea id="animal-to-add" type="JSON"></textarea>
             <span id="errorMessageAnimalData"></span><br>
             <button id="animal-add" type="submit">Add animal</button>
         </div>
-    
+
     </form>
 
     <br>
@@ -65,9 +65,7 @@
         <input type="radio" name="animal" value="pokemon" id="pokemon">Pokémons
         <input type="radio" name="animal" value="dog">Dogs
     </div>
-
     <br>
-
     <div id="animal-listing">
         <label for="animal-select">Select animal to show:</label>
         <select id="animal-select" data-loaded="false">

@@ -9,56 +9,11 @@
   const $animalDescription = document.getElementById('animal-description');
   const $animalToAdd = document.getElementById('animal-to-add');
   const $animalAdd = document.getElementById('animal-add');
+  const form1 = document.getElementById('theForm');
   const namePattern = /\w{3}\s\w{3}/;
   const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  // const emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const form1 = document.getElementById('theForm');
+  const personalNumberPattern = /\d{6}[+-]\d{4}/;
 
-  function onSubmitForm(e) {
-    
-    let formValid = true;
-
-    console.log('onSubmit');
-
-    for (let i = 0; i < e.target.length; i++) {
-      e.target[i].style.borderColor = '';
-      const inputValue = e.target[i].value;
-      const inputDataType = e.target[i].getAttribute('data-type');
-
-      console.log('data type: ', inputDataType);
-
-      switch (inputDataType) {
-
-        case 'name':
-          if (!inputValue.match(namePattern)) {
-            console.log('not a name');
-            document.getElementById("errorMessageName").innerHTML = "Name is required!";
-            formValid = false;
-          }
-          else {
-            e.target[i].className = '';
-          }
-          break;
-
-          case 'email':
-          if (!inputValue.match(emailPattern)) {
-            console.log('not an email');
-            document.getElementById("errorMessageEmail").innerHTML = "Email is required!";
-            formValid = false;
-          }
-          else {
-            e.target[i].className = '';
-          }
-          break;
-          
-      }
-    }
-
-    // If form is not valid, we prevent default action - which is submitting form
-    if (!formValid) {
-      e.preventDefault();
-    }
-  }
 
   function clearElement(element) {
     while (element.firstChild) {
@@ -98,10 +53,8 @@
     fetch(`http://${remoteUrl}/${type}/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        //const $pre = document.createElement('pre');
         const text = JSON.stringify(data.data, null, '\t');
         const $text = document.createTextNode(text);
-        //$pre.appendChild($preText);
         $animalDescription.appendChild($text);
         $animalDescription.setAttribute('data-loaded', 'true');
       });
@@ -144,60 +97,62 @@
           });
       }
       catch {
-        console.log("Error while parsing json");
         document.getElementById("errorMessageAnimalData").innerHTML = "Correct animal data is required!";
       }
     })
   }
 
+  function onSubmitForm(e) {
 
+    let formValid = true;
+
+    for (let i = 0; i < e.target.length; i++) {
+      const inputValue = e.target[i].value;
+      const inputDataType = e.target[i].getAttribute('data-type');
+
+      switch (inputDataType) {
+
+        case 'name':
+          if (!inputValue.match(namePattern)) {
+            document.getElementById("errorMessageName").innerHTML = "Correct insertion of firstname and lastname is required!";
+            formValid = false;
+          }
+          break;
+
+        case 'email':
+          if (!inputValue.match(emailPattern)) {
+            document.getElementById("errorMessageEmail").innerHTML = "Correct insertion of email is required!";
+            formValid = false;
+          }
+          break;
+
+        case 'number':
+          if (!inputValue.match(personalNumberPattern)) {
+            document.getElementById("errorPersonalNumber").innerHTML = "Correct insertion of personal number is required!";
+            formValid = false;
+          }
+          break;
+      }
+    }
+
+    // If form is not valid, we prevent default action - which is submitting form
+    if (!formValid) {
+      e.preventDefault();
+    }
+  }
 
   function onInvalid(e) {
     e.preventDefault();
-
-    let formValid = true;
-    const inputValue = e.target.value;
-    const inputDataType = e.target.getAttribute('type');
-
-      console.log('data type: ', inputDataType);
-
-      switch (inputDataType) {
-        case 'text':
-          if (!inputValue.match(namePattern)) {
-            console.log('not a name');
-            document.getElementById("errorMessageName").innerHTML = "Name is required!";
-            formValid = false;
-          }
-          else {
-            e.target[i].className = '';
-          }
-          break;
-
-        case 'e-mail':
-          if (!inputValue.match(emailPattern)) {
-            console.log('not a e-mail');
-            document.getElementById("errorMessageEmail").innerHTML = "Email is required!";
-            formValid = false;
-          }
-          else {
-            e.target[i].className = '';
-          }
-          break;
-
-      }
-
   }
 
   function registerInvalidListeners(form) {
     for (let i = 0; i < form.length; i++) {
-      console.log('Registering invalid: ', form[i]);
       form[i].addEventListener('invalid', onInvalid);
     }
   }
 
   function registerListeners() {
     form1.addEventListener('submit', onSubmitForm);
-    console.log('Registering form: ', form1);
     registerInvalidListeners(form1);
   }
 
