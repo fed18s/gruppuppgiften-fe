@@ -1,13 +1,13 @@
 // globals document, window
 "use strict";
 
-(function IIFE(){
+(function IIFE() {
   const remoteUrl = 'localhost:3000';
   let animalType;
 
-  function checkAnimalType(animal){
+  function checkAnimalType(animal) {
     animalType = animal;
-    populateSelect(animalType); 
+    populateSelect(animalType);
   }
 
   window.checkAnimalType = checkAnimalType;
@@ -18,7 +18,7 @@
   const $animalAdd = document.getElementById('animal-add');
 
   function clearElement(element) {
-    while(element.firstChild) {
+    while (element.firstChild) {
       element.removeChild(element.firstChild);
     }
   }
@@ -96,11 +96,11 @@
   const tagRegex = /<.*>/;
 
   function onSubmitForm(e) {
-    for (let i = 0; i<e.target.length; i++) {
+    for (let i = 0; i < e.target.length; i++) {
       e.target[i].style.borderColor = '';
       const inputValue = e.target[i].value;
       const inputDataType = e.target[i].getAttribute('data-type');
-     
+
       switch (inputDataType) {
         case 'username':
         case 'birthdate':
@@ -113,7 +113,7 @@
             e.target[i].className = '';
           }
           break;
-        }
+      }
     }
   }
 
@@ -123,7 +123,7 @@
   }
 
   function registerInvalidListeners(form) {
-    for (let i=0; i<form.length; i++) {
+    for (let i = 0; i < form.length; i++) {
       form[i].addEventListener('invalid', onInvalid);
     }
   }
@@ -146,6 +146,9 @@
   window.pageLoaded = pageLoaded;
 
   module.exports = {
-     checkAnimalType
+    testString: function testString(str) {
+      return false;
+    },
+    checkAnimalType
   };
 })();
