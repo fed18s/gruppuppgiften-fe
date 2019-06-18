@@ -119,11 +119,6 @@
           break;
         }
     }
-
-    // If form is not valid, we prevent default action - which is submitting form
-    //if (!formValid) {
-      //e.preventDefault();
-    //}
   }
 
   function onInvalid(e) {
