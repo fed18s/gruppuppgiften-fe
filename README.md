@@ -23,6 +23,14 @@ Arbeta inte med visuella aspekter (t ex css) i den här iterationen!
 * Skriv tester för REST-api:t i backend (se grenen "filips-take" i
  ursprungs-repot för gruppuppgiften).
 
+## Input (steg 2,5)
+
+* Lägg till ett fält som verifierar input genom att sätta attribut (t ex type,)
+ min, max, minlength, maxlength, required etc)
+* Lägg till ett fält som får sitt värde verifierat mha en regex i javastript i
+ samband med en knapptrycknig (det kan gälla personnummer, val av frukt, namn
+ på månad etc)
+
 
 ## Gruppindelning
 ### Grupp 1  

@@ -1,4 +1,4 @@
-// globals document, window
+// globals document, window, modules
 "use strict";
 
 (function IIFE() {
@@ -146,9 +146,15 @@
   window.pageLoaded = pageLoaded;
 
   module.exports = {
+
     testString: function testString(str) {
       return false;
     },
     checkAnimalType
+
+      testString: function testString(str) {
+        return false;
+      }
+
   };
 })();
